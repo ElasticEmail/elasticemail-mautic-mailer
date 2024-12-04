@@ -1,0 +1,33 @@
+{
+  "name": "elasticemail/elasticemail-mautic-mailer",
+  "type": "mautic-plugin",
+  "description": "ElasticEmail Symfony Mailer",
+  "keywords": [
+    "mautic",
+    "plugin",
+    "integration"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ElasticEmail",
+      "email": "integrations@elasticemail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "symfony/mailer": "^5.4|^6.0|^7.0",
+    "symfony/http-client": "^5.4|^6.0|^7.0",
+    "elasticemail/elasticemail-php": "^4.0.20"
+  },
+  "autoload": {
+    "psr-4": {
+      "MauticPlugin\\ElasticEmailMailerBundle\\": ""
+    }
+  },
+  "extra": {
+    "install-directory-name": "ElasticEmailMailerBundle"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
