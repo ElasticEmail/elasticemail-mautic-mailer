@@ -1,8 +1,9 @@
 {
   "name": "elasticemail/elasticemail-mautic-mailer",
   "type": "mautic-plugin",
-  "description": "ElasticEmail Symfony Mailer",
+  "description": "ElasticEmail Mailer Bundle for Mautic",
   "keywords": [
+    "elasticemail",
     "mautic",
     "plugin",
     "integration"
