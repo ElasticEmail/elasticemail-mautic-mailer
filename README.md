@@ -7,21 +7,27 @@
 ## Installation Steps
 
 1. **Download the Plugin**
-    - Download the plugin package from Github repository or by using Composer.
+    - Download the plugin package from Github repository or by using Composer. The plugin should reside in the `plugins/ElasticEmailMailerBundle` directory within your Mautic installation.
 
-2. **Clear Mautic cache**
+2. **Install dependencies**
+    - Run the following command in the Mautic root directory:
+    ```sh
+    composer require elasticemail/elasticemail-php
+    ```
+
+3. **Clear Mautic cache**
     - Clear the Mautic cache to ensure the plugin is loaded correctly.
     - You can do this by running the following command in your Mautic root directory:
      ```sh
      php bin/console cache:clear
      ```
 
-3. **Verify Installation**
+4. **Verify Installation**
     - The plugin should appear on the list of available plugins.
 
     ![Mautic Plugins page](elasticemail-mailer-bundle-plugins.png)
 
-4. **Configure the Plugin**
+5. **Configure the Plugin**
     - Once installed, navigate to `Configuration` > `Email settings`.
     - Under section `Email DSN` enter the following values:
         - Scheme: `elasticemail+api`
