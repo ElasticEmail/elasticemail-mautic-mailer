@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use MauticPlugin\ElasticEmailMailerBundle\Mailer\Factory\ElasticEmailTransportFactory;
-
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $configurator): void {
