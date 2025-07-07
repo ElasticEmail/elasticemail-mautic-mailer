@@ -1,6 +1,7 @@
 # ElasticEmail Mailer Mautic Plugin Installation Guide
 
 ## Requirements
+
 - Mautic 5.x (minimum 5.1)
 - PHP 8.0 or higher
 
