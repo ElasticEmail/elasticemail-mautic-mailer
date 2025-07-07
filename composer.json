@@ -1,5 +1,5 @@
 {
-  "name": "ElasticEmail/elasticemail-mautic-mailer",
+  "name": "elasticemail/elasticemail-mautic-mailer",
   "type": "mautic-plugin",
   "description": "ElasticEmail Mailer Bundle for Mautic",
   "keywords": [
