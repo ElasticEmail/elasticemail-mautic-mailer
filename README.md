@@ -8,7 +8,7 @@ The official [Mautic](https://mautic.org) plugin for sending email through [Elas
 
 [![Latest release](https://img.shields.io/github/v/release/ElasticEmail/elasticemail-mautic-mailer?logo=github&label=release)](https://github.com/ElasticEmail/elasticemail-mautic-mailer/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/ElasticEmail/elasticemail-mautic-mailer/total?logo=github&label=downloads)](https://github.com/ElasticEmail/elasticemail-mautic-mailer/releases)
-[![Mautic](https://img.shields.io/badge/Mautic-5.1%2B-4E5E9E?logo=mautic&logoColor=white)](https://mautic.org)
+[![Mautic](https://img.shields.io/badge/Mautic-5.1%20%7C%206%20%7C%207-4E5E9E?logo=mautic&logoColor=white)](https://mautic.org)
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/supported-versions.php)
 [![API](https://img.shields.io/badge/API-v4-0A7BBB)](https://elasticemail.com/developers/api-documentation/rest-api)
 [![License: MIT](https://img.shields.io/github/license/ElasticEmail/elasticemail-mautic-mailer?color=yellow)](LICENSE)
@@ -40,8 +40,8 @@ The official [Mautic](https://mautic.org) plugin for sending email through [Elas
 
 | Component | Version |
 | --- | --- |
-| Mautic | 5.x (5.1 or later) |
-| PHP | 8.1 or later |
+| Mautic | 5.1 or later, 6.x and 7.x |
+| PHP | 8.1 or later (8.2 or later for Mautic 7) |
 | Symfony Mailer / HTTP Client | 5.4, 6.x or 7.x (bundled with Mautic) |
 | [`elasticemail/elasticemail-php`](https://packagist.org/packages/elasticemail/elasticemail-php) | 4.0.20 or later |
 
@@ -51,17 +51,27 @@ You'll also need an Elastic Email **API key** with permission to send email. You
 
 ### 1. Download the plugin
 
-Download **`ElasticEmailMailerBundle.zip`** from the [latest release](https://github.com/ElasticEmail/elasticemail-mautic-mailer/releases/latest) and extract it into your Mautic `plugins/` directory:
+Download **`ElasticEmailMailerBundle.zip`** from the [latest release](https://github.com/ElasticEmail/elasticemail-mautic-mailer/releases/latest) and extract it into your Mautic plugins directory. Where that is depends on how Mautic was installed:
+
+| Installation | Plugins directory |
+| --- | --- |
+| Composer (`mautic/recommended-project`) or the official Docker image, the default for Mautic 6 and 7 | `docroot/plugins/` |
+| Downloaded Mautic zip (older installs) | `plugins/` |
 
 ```bash
 cd /path/to/mautic
 curl -L -o /tmp/ElasticEmailMailerBundle.zip \
   https://github.com/ElasticEmail/elasticemail-mautic-mailer/releases/latest/download/ElasticEmailMailerBundle.zip
-unzip /tmp/ElasticEmailMailerBundle.zip -d plugins/
+
+# Composer or Docker install (Mautic 6 and 7)
+unzip /tmp/ElasticEmailMailerBundle.zip -d docroot/plugins/
+
+# Zip install: use plugins/ instead
+# unzip /tmp/ElasticEmailMailerBundle.zip -d plugins/
 ```
 
 > [!IMPORTANT]
-> The plugin directory must be named exactly **`plugins/ElasticEmailMailerBundle`**. If you use GitHub's "Source code" archive instead of the release zip, rename the extracted folder, or Mautic won't load the bundle.
+> The plugin directory must be named exactly **`ElasticEmailMailerBundle`**, for example `docroot/plugins/ElasticEmailMailerBundle`. If you use GitHub's "Source code" archive instead of the release zip, rename the extracted folder, or Mautic won't load the bundle.
 
 ### 2. Install the Elastic Email PHP SDK
 
@@ -131,7 +141,7 @@ The transport connects to `smtp.elasticemail.com` on port `2525`.
 
 ## Troubleshooting
 
-- **The plugin doesn't appear in Mautic.** Check that the folder is `plugins/ElasticEmailMailerBundle`, then run `php bin/console cache:clear` and `php bin/console mautic:plugins:reload` again.
+- **The plugin doesn't appear in Mautic.** Check that the folder is `docroot/plugins/ElasticEmailMailerBundle` (Composer or Docker installs) or `plugins/ElasticEmailMailerBundle` (zip installs), then run `php bin/console cache:clear` and `php bin/console mautic:plugins:reload` again.
 - **`Class "ElasticEmail\Api\EmailsApi" not found`.** The SDK isn't installed. Run `composer require elasticemail/elasticemail-php` in the Mautic root.
 - **`The "elasticemail+api" scheme is not supported`.** The cache still holds the old container. Clear it and reload plugins.
 - **Test email fails with code 401 or 403.** The API key is wrong or doesn't have permission to send email.
@@ -162,7 +172,7 @@ Releases follow [Semantic Versioning](https://semver.org). See [Releases](https:
 | --- | --- |
 | Composer package | `elasticemail/elasticemail-mautic-mailer` (type `mautic-plugin`) |
 | Bundle | `MauticPlugin\ElasticEmailMailerBundle\ElasticEmailMailerBundle` |
-| Install directory | `plugins/ElasticEmailMailerBundle` |
+| Install directory | `docroot/plugins/ElasticEmailMailerBundle` (Composer or Docker) or `plugins/ElasticEmailMailerBundle` (zip install) |
 | Transport factory | `Mailer/Factory/ElasticEmailTransportFactory.php` |
 | Transports | `Mailer/Transport/ElasticEmailApiTransport.php`, `Mailer/Transport/ElasticEmailSmtpTransport.php` |
 
