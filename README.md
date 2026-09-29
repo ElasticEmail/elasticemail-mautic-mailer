@@ -47,6 +47,9 @@ The official [Mautic](https://mautic.org) plugin for sending email through [Elas
 
 You'll also need an Elastic Email **API key** with permission to send email. You can create one in your [API settings](https://app.elasticemail.com/marketing/settings/new/manage-api). For the SMTP transport, create SMTP credentials in the same settings area instead.
 
+> [!IMPORTANT]
+> Elastic Email only sends from verified domains. Before your first send, [verify your sending domain](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain) and use an address on that domain as the sender.
+
 ## Installation
 
 ### 1. Download the plugin
@@ -115,7 +118,7 @@ elasticemail+api://YOUR_API_KEY@default
 
 ![Mautic Email configuration page](elasticemail-mailer-bundle-config.png)
 
-Click **Send test email** to check the settings. The **From** address must use a domain you've verified in your Elastic Email account.
+Click **Send test email** to check the settings. The **From** address must use a domain you've [verified in your Elastic Email account](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain).
 
 > [!TIP]
 > Use a dedicated API key for Mautic with only the access it needs, so you can rotate or revoke it without affecting other apps.
@@ -145,7 +148,7 @@ The transport connects to `smtp.elasticemail.com` on port `2525`.
 - **`Class "ElasticEmail\Api\EmailsApi" not found`.** The SDK isn't installed. Run `composer require elasticemail/elasticemail-php` in the Mautic root.
 - **`The "elasticemail+api" scheme is not supported`.** The cache still holds the old container. Clear it and reload plugins.
 - **Test email fails with code 401 or 403.** The API key is wrong or doesn't have permission to send email.
-- **Sender address rejected.** Verify the From domain in your Elastic Email account.
+- **Sender address rejected.** [Verify the From domain](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain) in your Elastic Email account.
 - Anything else: check the Mautic logs in `var/logs/`.
 
 ## More examples
